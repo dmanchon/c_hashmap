@@ -1,6 +1,31 @@
 [
 {
   "directory": "/Users/dmanchon/repos/c_hashmap",
-  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-fvisibility=hidden", "-O3", "-Iinclude", "-DNDEBUG", "-o", "build/.objs/c_hashmap/macosx/arm64/release/src/main.c.o", "src/main.c"],
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-g", "-O0", "-std=c99", "-Iinclude", "-o", "build/.objs/test_hashmap/macosx/arm64/debug/src/arena.c.o", "src/arena.c"],
+  "file": "src/arena.c"
+},
+{
+  "directory": "/Users/dmanchon/repos/c_hashmap",
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-g", "-O0", "-std=c99", "-Iinclude", "-o", "build/.objs/test_hashmap/macosx/arm64/debug/src/hashmap.c.o", "src/hashmap.c"],
+  "file": "src/hashmap.c"
+},
+{
+  "directory": "/Users/dmanchon/repos/c_hashmap",
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-g", "-O0", "-std=c99", "-Iinclude", "-o", "build/.objs/test_hashmap/macosx/arm64/debug/tests/test_hashmap.c.o", "tests/test_hashmap.c"],
+  "file": "tests/test_hashmap.c"
+},
+{
+  "directory": "/Users/dmanchon/repos/c_hashmap",
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-g", "-O0", "-std=c99", "-Iinclude", "-o", "build/.objs/c_hashmap/macosx/arm64/debug/src/arena.c.o", "src/arena.c"],
+  "file": "src/arena.c"
+},
+{
+  "directory": "/Users/dmanchon/repos/c_hashmap",
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-g", "-O0", "-std=c99", "-Iinclude", "-o", "build/.objs/c_hashmap/macosx/arm64/debug/src/main.c.o", "src/main.c"],
   "file": "src/main.c"
+},
+{
+  "directory": "/Users/dmanchon/repos/c_hashmap",
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-g", "-O0", "-std=c99", "-Iinclude", "-o", "build/.objs/c_hashmap/macosx/arm64/debug/src/hashmap.c.o", "src/hashmap.c"],
+  "file": "src/hashmap.c"
 }]
