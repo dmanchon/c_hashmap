@@ -4,12 +4,16 @@
 
 
 
-void test_universal_hash_function() {
+void test_deterministic() {
     assert(universal_hash("key1", 1024) == universal_hash("key1", 1024));
 }
 
+void test_linear() {
+    assert(universal_hash("key1", 1024) < universal_hash("key2", 1024));
+}
 
 int main(int argc, char* argv[]) {
-    test_universal_hash_function();
+    test_deterministic();
+    test_linear();
     return 0;
 }
