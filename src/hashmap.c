@@ -2,6 +2,9 @@
 #include "arena.h"
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
+
+#define ALLOWED_OVERHEAD 5
 
 struct node {
     struct node *next;
@@ -26,7 +29,7 @@ unsigned int universal_hash(const char* str_key, unsigned int m) {
 }
 
 struct hashmap *hashmap_create(unsigned int capacity) {
-    struct arena *a = arena_create(sizeof(struct node*) * capacity * 32);
+    struct arena *a = arena_create(sizeof(struct node*) * capacity * (1+ALLOWED_OVERHEAD));
 
     struct hashmap *h = arena_malloc(a, sizeof(struct hashmap));
     h->arena = a;
@@ -75,6 +78,7 @@ void hashmap_set(struct hashmap *hm, const char *key, const char *value) {
     unsigned int pos = universal_hash(key, hm->capacity);
 
     struct node *n = arena_malloc(hm->arena, sizeof(struct node));
+    assert(n != NULL);
     
     n->value = value;
     n->key = key;
