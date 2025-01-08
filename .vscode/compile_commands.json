@@ -1,0 +1,6 @@
+[
+{
+  "directory": "/Users/dmanchon/repos/c_hashmap",
+  "arguments": ["/Library/Developer/CommandLineTools/usr/bin/clang", "-c", "-Qunused-arguments", "-isysroot", "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk", "-fvisibility=hidden", "-O3", "-Iinclude", "-DNDEBUG", "-o", "build/.objs/c_hashmap/macosx/arm64/release/src/main.c.o", "src/main.c"],
+  "file": "src/main.c"
+}]
