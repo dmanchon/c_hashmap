@@ -75,9 +75,10 @@ void hashmap_set(struct hashmap *hm, const char *key, const char *value) {
     unsigned int pos = universal_hash(key, hm->capacity);
 
     struct node *n = arena_malloc(hm->arena, sizeof(struct node));
+    
     n->value = value;
     n->key = key;
-
+    
     struct node *root = hm->table[pos];
 
     if (root == NULL) {
@@ -87,16 +88,12 @@ void hashmap_set(struct hashmap *hm, const char *key, const char *value) {
 
         while (ll->next) {
             if (strcmp(ll->key, key) == 0) {
-                if (value) {
-                    ll->value = value;
-                } else {
-                    ll = ll->next;
-                }
+                ll->value = value;
                 return;
             }
             ll = ll->next;
         }
-
+        
         ll->next = n;
     }
 
@@ -104,9 +101,26 @@ void hashmap_set(struct hashmap *hm, const char *key, const char *value) {
     hm->size++;
 }
 
-int hashmap_remove(struct hashmap *hm, const char *key) {
-    hashmap_set(hm, key, NULL);
-    hm->size--;
+void hashmap_remove(struct hashmap *hm, const char *key) {
+    unsigned int pos = universal_hash(key, hm->capacity);
 
-    return 0;
+    struct node *n = arena_malloc(hm->arena, sizeof(struct node));
+    struct node *root = hm->table[pos];
+
+    if (root && root->next) {
+        struct node *ll = root;
+
+        while (ll->next) {
+            if (strcmp(ll->key, key) == 0) {
+                ll = ll->next;
+                return;
+            }
+            ll = ll->next;
+        }
+    } else {
+        root = NULL;
+    }
+
+    hm->table[pos] = root;
+    hm->size++;
 }

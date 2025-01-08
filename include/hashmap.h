@@ -17,6 +17,6 @@ void hashmap_free(struct hashmap *hm);
 unsigned int hashmap_size(const struct hashmap *hm);
 const char* hashmap_get(const struct hashmap *hm, const char *key);
 void hashmap_set(struct hashmap *hm, const char *key, const char *value);
-int hashmap_remove(struct hashmap *hm, const char *key);
+void hashmap_remove(struct hashmap *hm, const char *key);
 
 #endif

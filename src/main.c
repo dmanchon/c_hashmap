@@ -51,18 +51,29 @@ int main(int argc, char** argv) {
     s = hashmap_get(hm, "key3");
     printf("key3 = %s\n", s);
 
-    // test collisions
-    struct hashmap *hm_ch = hashmap_create_with_custom_hash_fn(1024, constant_hash);
-    hashmap_set(hm, "key1", "val1");
-    hashmap_set(hm, "key2", "val2");
-    hashmap_set(hm, "key3", "val3");
-    hashmap_set(hm, "key4", "val4");
-
-    s = hashmap_get(hm, "notfound");
-    printf("notfound = %s\n", s);
-
+    hashmap_remove(hm, "key3");
     s = hashmap_get(hm, "key3");
     printf("key3 = %s\n", s);
+    s = hashmap_get(hm, "key4");
+    printf("key4 = %s\n", s);
+
+    // test collisions
+    struct hashmap *hm_ch = hashmap_create_with_custom_hash_fn(1024, constant_hash);
+    hashmap_set(hm_ch, "key1", "val1");
+    hashmap_set(hm_ch, "key2", "val2");
+    hashmap_set(hm_ch, "key3", "val3");
+    hashmap_set(hm_ch, "key4", "val4");
+
+    s = hashmap_get(hm_ch, "notfound");
+    printf("notfound = %s\n", s);
+
+    s = hashmap_get(hm_ch, "key3");
+    printf("key3 = %s\n", s);
+    hashmap_remove(hm_ch, "key3");
+    s = hashmap_get(hm_ch, "key3");
+    printf("key3 = %s\n", s);
+    s = hashmap_get(hm_ch, "key4");
+    printf("key4 = %s\n", s);
 
 
     hashmap_free(hm);
