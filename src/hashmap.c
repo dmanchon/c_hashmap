@@ -14,7 +14,7 @@ struct hashmap {
     unsigned int size;
     struct node** table;
     struct arena *arena;
-
+    unsigned int (*hashfn) (const char*, unsigned int);
 };
 
 unsigned int universal_hash(const char* str_key, unsigned int m) {
@@ -33,7 +33,13 @@ struct hashmap *hashmap_create(unsigned int capacity) {
     h->capacity = capacity;
     h->size = 0;
     h->table = arena_malloc(h->arena, sizeof(struct node*) * capacity);
-    
+    h->hashfn = universal_hash;
+    return h;
+}
+
+struct hashmap *hashmap_create_with_custom_hash_fn(unsigned int capacity, unsigned int (*fn) (const char*, unsigned int)) {
+    struct hashmap *h = hashmap_create(capacity);
+    h->hashfn = fn;
     return h;
 }
 
@@ -80,8 +86,17 @@ void hashmap_set(struct hashmap *hm, const char *key, const char *value) {
         struct node *ll = root;
 
         while (ll->next) {
+            if (strcmp(ll->key, key) == 0) {
+                if (value) {
+                    ll->value = value;
+                } else {
+                    ll = ll->next;
+                }
+                return;
+            }
             ll = ll->next;
         }
+
         ll->next = n;
     }
 
