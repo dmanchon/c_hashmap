@@ -122,5 +122,5 @@ void hashmap_remove(struct hashmap *hm, const char *key) {
     }
 
     hm->table[pos] = root;
-    hm->size++;
+    hm->size--;
 }
