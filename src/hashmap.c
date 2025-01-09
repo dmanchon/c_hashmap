@@ -21,9 +21,27 @@ struct hashmap {
 };
 
 unsigned int universal_hash(const char* str_key, unsigned int m) {
+    const unsigned int LARGE_PRIME = 4294967291U;
+    const unsigned int SMALL_PRIME = 33U;
     unsigned int hash = 0;
     for (int i = 0; str_key[i] != '\0'; i++) {
         hash = (hash * SMALL_PRIME + str_key[i]) % LARGE_PRIME;
+    }
+    return hash % m;
+}
+
+unsigned int constant_hash(const char* key, unsigned int m) {
+    return 42;
+}
+
+unsigned int fnv1a_hash(const char* str_key, unsigned int m) {
+    const unsigned int FNV_OFFSET_BASIS = 2166136261U;
+    const unsigned int FNV_PRIME = 16777619U;
+
+    unsigned int hash = FNV_OFFSET_BASIS;
+    for (int i = 0; str_key[i] != '\0'; i++) {
+        hash ^= (unsigned char)str_key[i];
+        hash *= FNV_PRIME;
     }
     return hash % m;
 }
@@ -36,7 +54,7 @@ struct hashmap *hashmap_create(unsigned int capacity) {
     h->capacity = capacity;
     h->size = 0;
     h->table = arena_malloc(h->arena, sizeof(struct node*) * capacity);
-    h->hashfn = universal_hash;
+    h->hashfn = fnv1a_hash;
     return h;
 }
 
@@ -79,7 +97,7 @@ void hashmap_set(struct hashmap *hm, const char *key, const char *value) {
 
     struct node *n = arena_malloc(hm->arena, sizeof(struct node));
     assert(n != NULL);
-    
+
     n->value = value;
     n->key = key;
     

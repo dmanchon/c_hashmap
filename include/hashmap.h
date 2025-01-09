@@ -2,9 +2,6 @@
 #ifndef HASHMAP_H_INCLUDE
 #define HASHMAP_H_INCLUDE
 
-#define LARGE_PRIME 4294967291U
-#define SMALL_PRIME 33U
-
 struct hashmap;
 
 unsigned int universal_hash(const char* str_key, unsigned int m);
