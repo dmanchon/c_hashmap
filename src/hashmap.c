@@ -54,6 +54,10 @@ struct hashmap *hashmap_create(unsigned int capacity) {
     h->capacity = capacity;
     h->size = 0;
     h->table = arena_malloc(h->arena, sizeof(struct node*) * capacity);
+    //init
+    for (int i; i < capacity; ++i) {
+        h->table[i] = NULL;
+    }
     h->hashfn = fnv1a_hash;
     return h;
 }
